@@ -1,1 +1,33 @@
+import pandas as pd
+import pyodbc
 
+# SQL Server bağlantı parametrləri
+server = 'Test'
+database = 'XXXX_10'
+username = 'user'
+password = 'Report123'
+query = "SELECT * \
+           FROM [XXXX_10].[dbo].[CARI_HESAPLAR_YONETIM_AD];"
+
+# SQL Server" üçün bir bağlantı yaratmaq
+conn = pyodbc.connect(f'DRIVER=SQL Server;SERVER={server};DATABASE={database};UID={username};PWD={password}')
+
+# SQL sorğusunu DataFrame-də oxumaq
+df = pd.read_sql(query, conn)
+
+# Border olan dataframe style-i yaratmaq
+style = df.iloc[:, :].style.set_properties(**{'border': '1px solid black'})
+
+
+# DataFrame-i göstərmək
+display(style)
+
+
+# DataFrame'in indekslerini 1'dən başlayacaq şəkildə dəyişdirmək
+df.index = range(1, len(df) + 1)
+
+# Excel faylının save edildiyi yol ve fayl adı
+excel_file_path = r'C:\Users\vilayat.shamiyev\Desktop\Ot.xlsx'
+
+# DataFrame'i Excel'ə save etmək (Səhifə adı: "ot")
+df.to_excel(excel_file_path, sheet_name='OT', index=True)
