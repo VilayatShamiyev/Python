@@ -6,7 +6,7 @@ def send_email():
     folder = namespace.GetDefaultFolder(6)  # Giden Kutusu
     mail = outlook.CreateItem(0)
     mail.Subject = 'Test'
-    mail.Body = 'Merhaba,\n\nBu bir test e-postasıdır.\n\nİyi günler.'
+    mail.Body = 'Salam,\n\nBu bir test e-mailidir.\n\n'
 
     # Göndərilən şəxslər
     recipients = ['vilayat.shamiyev@gmail.com']
