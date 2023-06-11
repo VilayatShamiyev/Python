@@ -3,7 +3,7 @@ import win32com.client as win32
 def send_email():
     outlook = win32.Dispatch('Outlook.Application')
     namespace = outlook.GetNamespace('MAPI')
-    folder = namespace.GetDefaultFolder(6)  # Giden Kutusu
+    folder = namespace.GetDefaultFolder(6)
     mail = outlook.CreateItem(0)
     mail.Subject = 'Test'
     mail.Body = 'Salam,\n\nBu bir test e-mailidir.\n\n'
